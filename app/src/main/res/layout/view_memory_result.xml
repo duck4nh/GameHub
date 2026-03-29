@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:paddingStart="20dp"
+    android:paddingTop="104dp"
+    android:paddingEnd="20dp"
+    android:paddingBottom="32dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="232dp"
+            android:background="@drawable/bg_game_card_memory_28"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kết quả Ghi nhớ"
+                android:textColor="@color/gh_text_secondary"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/memory_result_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="1743 điểm"
+                android:textColor="@color/gh_text_primary"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/memory_result_subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="Màn 1 · 3x4 · 6 cặp khớp · 9 lượt đoán"
+                android:textColor="@color/gh_text_secondary"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/memory_result_retry"
+                        android:layout_width="0dp"
+                        android:layout_height="42dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_primary_button_round"
+                        android:backgroundTint="@null"
+                        android:text="Quay lại"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        app:backgroundTint="@null" />
+
+                    <Button
+                        android:id="@+id/memory_result_next"
+                        android:layout_width="0dp"
+                        android:layout_height="42dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_filter_unselected"
+                        android:backgroundTint="@null"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:text="Màn tiếp"
+                        android:textAllCaps="false"
+                        android:textColor="@color/gh_button_secondary_text"
+                        android:textSize="12sp"
+                        app:backgroundTint="@null" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/memory_result_close"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_filter_unselected"
+                    android:backgroundTint="@null"
+                    android:text="Về trang chủ"
+                    android:textAllCaps="false"
+                    android:textColor="@color/gh_button_secondary_text"
+                    app:backgroundTint="@null" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_chip_success"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Thời gian"
+                    android:textColor="@color/gh_text_secondary"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/memory_result_time_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="00:05"
+                    android:textColor="@color/gh_text_primary"
+                    android:textSize="22sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_card_surface_20"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chính xác"
+                    android:textColor="@color/gh_text_secondary"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/memory_result_accuracy_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="67%"
+                    android:textColor="@color/gh_text_primary"
+                    android:textSize="22sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_card_brand_20"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chuỗi"
+                    android:textColor="@color/gh_text_secondary"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/memory_result_streak_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="5"
+                    android:textColor="@color/gh_text_primary"
+                    android:textSize="22sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:minHeight="144dp"
+            android:background="@drawable/bg_card_surface_24"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="Điểm cải thiện"
+                android:textColor="@color/gh_text_primary"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/memory_result_note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="Đã mở màn tiếp theo. Bạn có thể quay lại danh sách level hoặc sang thẳng màn mới."
+                android:textColor="@color/gh_text_secondary"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
