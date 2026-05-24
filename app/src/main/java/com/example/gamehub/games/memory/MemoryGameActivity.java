@@ -31,6 +31,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Memory game screen controller.
+ *
+ * This Activity renders level selection, the card board, pause/result states,
+ * and AI review text. Game rules and persistence stay inside MemoryViewModel.
+ */
 public class MemoryGameActivity extends AppCompatActivity {
     private static final int LEVEL_GRID_COLUMNS = 2;
 
@@ -482,6 +488,10 @@ public class MemoryGameActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Handles one board tap, logs the visible turn event for AI review context,
+     * and schedules mismatch hiding after MemoryViewModel.MISMATCH_DELAY_MS.
+     */
     private void onCardClicked(int position) {
         MemoryLevel currentLevel = viewModel.getCurrentLevel();
         MemoryCard tappedCard = position >= 0 && position < viewModel.getCards().size()
@@ -606,6 +616,11 @@ public class MemoryGameActivity extends AppCompatActivity {
                 .start();
     }
 
+    /**
+     * Requests one AI review for the current Memory result. The key combines
+     * level, score, matched pairs, attempts, and time to prevent duplicate calls
+     * during repeated renderResult() passes.
+     */
     private void ensureMemoryAiReview() {
         String reviewKey = buildMemoryReviewKey();
         if (reviewKey.equals(activeReviewKey)) {
@@ -655,6 +670,10 @@ public class MemoryGameActivity extends AppCompatActivity {
         );
     }
 
+    /**
+     * Builds the Memory-specific AI prompt from final stats and chronological
+     * turn logs. The final AI_METRICS block is machine-readable fallback data.
+     */
     private String buildMemoryReviewPrompt() {
         MemoryLevel level = viewModel.getCurrentLevel();
         StringBuilder builder = new StringBuilder();
@@ -685,7 +704,31 @@ public class MemoryGameActivity extends AppCompatActivity {
                 builder.append("- ").append(entry).append('\n');
             }
         }
+        appendAiMetricsBlock(builder, level);
         return builder.toString();
+    }
+
+    /**
+     * Adds stable key=value stats for GeminiReviewService local fallback. The
+     * generic total_questions/correct_count keys keep compatibility with the
+     * shared review service, while Memory-specific keys improve wording.
+     */
+    private void appendAiMetricsBlock(StringBuilder builder, @Nullable MemoryLevel level) {
+        int totalPairs = level == null ? viewModel.getMatchedPairs() : (level.rowCount * level.columnCount) / 2;
+        builder.append('\n')
+                .append("AI_METRICS\n")
+                .append("game_type=memory\n")
+                .append("total_questions=").append(totalPairs).append('\n')
+                .append("correct_count=").append(viewModel.getMatchedPairs()).append('\n')
+                .append("accuracy_percent=").append(viewModel.getAccuracyPercent()).append('\n')
+                .append("score=").append(viewModel.getScore()).append('\n')
+                .append("best_combo=").append(viewModel.getBestStreak()).append('\n')
+                .append("total_pairs=").append(totalPairs).append('\n')
+                .append("matched_pairs=").append(viewModel.getMatchedPairs()).append('\n')
+                .append("pair_attempts=").append(viewModel.getPairAttempts()).append('\n')
+                .append("best_streak=").append(viewModel.getBestStreak()).append('\n')
+                .append("elapsed_ms=").append(viewModel.getElapsedTimeMs()).append('\n')
+                .append("won=").append(viewModel.didLastGameWin() ? 1 : 0).append('\n');
     }
 
     private void appendSessionLog(String entry) {
